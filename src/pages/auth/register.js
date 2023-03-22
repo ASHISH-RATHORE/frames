@@ -13,13 +13,14 @@ function Page() {
   return (
     <>
      <Head>
+     <meta name="description" content={"Join the frames community for amazing content"} />
         <title>
           Register | Frames
         </title>
       </Head>
     <Box
     sx={{
-      background: {xs:"linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%)",lg:"white"},
+      background: {xs:"white",lg:"white"},
       flex: '1 1 auto',
       alignItems: 'center',
       display: 'flex',

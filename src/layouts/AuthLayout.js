@@ -64,7 +64,10 @@ const AuthLayout = (props) => {
               p: 3,
               position: 'fixed',
               top: 0,
-              width: '100%'
+              width: '100%',
+              display:"flex",
+              gap:"1em",
+              alignItems:"center"
             }}
           >
             <Box
@@ -78,6 +81,17 @@ const AuthLayout = (props) => {
             >
               <Logo />
             </Box>
+           {!matches&& 
+           <Box>
+            <Typography
+              align="center"
+              color="primary.constrast"
+              variant="h5"
+              fontStyle={"italic"}
+            >
+             Frames
+            </Typography>
+            </Box>}
           </Box>
           {children}
         </Grid>

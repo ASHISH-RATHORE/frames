@@ -154,7 +154,8 @@ export function createComponents(config) {
           borderStyle: 'solid',
           borderWidth: 1,
           overflow: 'hidden',
-          borderColor: palette.neutral[200],
+          borderColor: palette.neutral[300],
+         
           transition: muiTheme.transitions.create([
             'border-color',
             'box-shadow'

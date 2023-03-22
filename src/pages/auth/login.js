@@ -24,6 +24,7 @@ function Page() {
       alignItems: 'center',
       display: 'flex',
       justifyContent: 'center',
+      margin:{xs:"0 0.5em"},
     }}
     >
    <Box
