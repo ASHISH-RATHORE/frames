@@ -123,7 +123,7 @@ const AuthLayout = (props) => {
               High-quality and royalty free content shared by creators.
             </Typography>
             <Image
-              alt="xcx"
+              alt="camera-image"
               src={common}
             />
           </Box>
