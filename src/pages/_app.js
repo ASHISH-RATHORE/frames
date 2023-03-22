@@ -2,7 +2,7 @@
 import '@/styles/globals.css'
 import { ThemeProvider } from '@mui/material/styles'
 import Head from 'next/head';
-import { useNProgress } from '../hooks/use-nprogress';
+import { useNProgress } from '../hookss/use-nprogress';
 import { CssBaseline } from '@mui/material';
 import { createTheme } from '@/theme';
 import Link from 'next/link';
