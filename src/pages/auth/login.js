@@ -55,7 +55,7 @@ function Page() {
                   component={NextLink}
                   href="/auth/register"
                   underline="hover"
-                  variant="subtitle2"
+                  variant="subtitle1"
                 >
                   Register
                 </Link>
