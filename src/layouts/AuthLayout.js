@@ -67,7 +67,10 @@ const AuthLayout = (props) => {
               width: '100%',
               display:"flex",
               gap:"1em",
-              alignItems:"center"
+              alignItems:"center", 
+              // [theme.breakpoints.down('sm')]: {
+              //   background: "rgb(170,176,198)"
+              // },
             }}
           >
             <Box

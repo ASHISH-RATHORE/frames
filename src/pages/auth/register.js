@@ -75,7 +75,7 @@ function Page() {
                   component={NextLink}
                   href="/auth/login"
                   underline="hover"
-                  variant="subtitle2"
+                  variant="subtitle1"
                 >
                   Log in
                 </Link>
@@ -150,7 +150,7 @@ function Page() {
                   type="submit"
                   variant="contained"
                 >
-                  Continue
+                  Join
                 </Button>
                 
               </form>

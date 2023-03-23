@@ -16,7 +16,8 @@ export function createPalette() {
       default: common.white,
       paper: common.paper,
       black: common.black,
-      app:"linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486)"
+      app:"linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486)",
+      offWhite:"rgba(0,0,0,0)",
     },
     divider: '#F2F4F7',
     error,

@@ -1,19 +1,32 @@
-import BellIcon from '@heroicons/react/24/solid/BellIcon';
-import UsersIcon from '@heroicons/react/24/solid/UsersIcon';
-import Bars3Icon from '@heroicons/react/24/solid/Bars3Icon';
-import MagnifyingGlassIcon from '@heroicons/react/24/solid/MagnifyingGlassIcon';
+import BellIcon from "@heroicons/react/24/solid/BellIcon";
+import UsersIcon from "@heroicons/react/24/solid/UsersIcon";
+import Bars3Icon from "@heroicons/react/24/solid/Bars3Icon";
+import MagnifyingGlassIcon from "@heroicons/react/24/solid/MagnifyingGlassIcon";
 import {
+  AppBar,
   Avatar,
   Badge,
   Box,
+  Button,
+  Divider,
   IconButton,
+  InputBase,
   Stack,
   SvgIcon,
   Tooltip,
-  useMediaQuery
-} from '@mui/material';
-import { alpha } from '@mui/material/styles';
-import { usePopover } from '../hooks/use-popover';
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import { usePopover } from "../hooks/use-popover";
+import AppName from "../assets/auth/app-name.svg";
+import AppLogo from "../assets/auth/login.svg";
+import Image from "next/image";
+import { Logo } from "@/components/custom-logo/logo";
+import Link from "next/link";
+
+import { useTheme } from "@emotion/react";
+import styled from "@emotion/styled";
 // import { AccountPopover } from '../Navigation/account-popover';
 
 const SIDE_NAV_WIDTH = 280;
@@ -23,25 +36,63 @@ export const TopNav = (props) => {
   const { onNavOpen } = props;
   // const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   // const accountPopover = usePopover();
+  const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    // border:"1px solid ",
+    // borderColor:"theme.palette.primary.main",
+    background:"#f7f7f7",
+    // '&:hover': {
+    //   backgroundColor: alpha(theme.palette.common.white, 0.25),
+    // },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto',
+    },
+  }));
+
+  const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }));
+
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'theme.palette.primary.main',
+    '& .MuiInputBase-input': {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('md')]: {
+        width: '20ch',
+      },
+    },
+  }));
+  
+
+  const theme = useTheme();
 
   return (
     <>
       <Box
         component="header"
-        sx={{
-          backdropFilter: 'blur(6px)',
-          backgroundColor:"blueviolet",
-          position: 'sticky',
-          left: {
-            lg: `${SIDE_NAV_WIDTH}px`
-          },
-          top: 0,
-          // width: {
-          //   lg: `calc(100% - ${SIDE_NAV_WIDTH}px)`
-          // },
-          zIndex: (theme) => theme.zIndex.appBar
-        }}
+        // sx={{ flexGrow: 1}}
       >
+        <AppBar position="sticky" sx={{
+          background: (theme) => theme.palette.background.default,
+          position: "sticky",
+          top: 0,
+          zIndex: (theme) => theme.zIndex.appBar,
+        }}>
+
         <Stack
           alignItems="center"
           direction="row"
@@ -49,73 +100,80 @@ export const TopNav = (props) => {
           spacing={2}
           sx={{
             minHeight: TOP_NAV_HEIGHT,
-            px: 2
+            px: 2,
           }}
-        >
-          <Stack
-            alignItems="center"
-            direction="row"
-            spacing={2}
           >
-            {/* {!lgUp && (
-              <IconButton onClick={onNavOpen}>
-                <SvgIcon fontSize="small">
-                  <Bars3Icon />
-                </SvgIcon>
-              </IconButton>
-            )} */}
-            <Tooltip title="Search">
-              <IconButton>
-                <SvgIcon fontSize="small">
-                  <MagnifyingGlassIcon />
-                </SvgIcon>
-              </IconButton>
-            </Tooltip>
-          </Stack>
-          <Stack
-            alignItems="center"
-            direction="row"
-            spacing={2}
-          >
-            <Tooltip title="Contacts">
-              <IconButton>
-                <SvgIcon fontSize="small">
-                  {/* <UsersIcon /> */}
-                </SvgIcon>
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Notifications">
-              <IconButton>
-                <Badge
-                  badgeContent={4}
-                  color="success"
-                  variant="dot"
-                >
-                  <SvgIcon fontSize="small"> 
-                    <BellIcon />
-                </SvgIcon>
-                </Badge>
-              </IconButton>
-            </Tooltip>
-            <Avatar
-              // onClick={accountPopover.handleOpen}
-              // ref={accountPopover.anchorRef}
+          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+            <Box
+              component={Link}
+              href="/"
               sx={{
-                cursor: 'pointer',
                 height: 40,
-                width: 40
+                width: 40,
+               display: { xs: 'none', md: 'flex' }
               }}
-              src=""
-            />
+              >
+              <Logo />
+            </Box>
+            <Image src={AppName} alt="Frames" height={30} />
+            <Box>
+          {/* <Search>
+          <SearchIconWrapper>
+          <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+          placeholder="Search…"
+          inputProps={{ 'aria-label': 'search' }}
+          />
+          </Search> */}
+        </Box>
+            
+          </Stack>
+         
+
+          <Stack
+            alignItems="center"
+            justifyContent="space-evenly"
+            direction="row"
+            spacing={5}
+            >
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <Button disabled variant="contained">
+                Upload
+              </Button>
+            </Box>
+
+            <Stack direction="row" >
+              {false ? (
+                <Avatar
+                sx={{
+                  cursor: "pointer",
+                  height: 40,
+                  width: 40,
+                  background: theme.palette.background.app,
+                }}
+                >
+                  AR
+                </Avatar>
+              ):(
+                <Box >
+                  <Button component={Link} href="/auth/login">
+                    Log in
+                  </Button>
+                  <Button
+                    component={Link}
+                    href="/auth/register"
+                    variant="contained"
+                    >
+                    Join
+                  </Button>
+                </Box>
+                )}
+            </Stack>
           </Stack>
         </Stack>
+              </AppBar>
       </Box>
-      {/* <AccountPopover */}
-        {/* anchorEl={accountPopover.anchorRef.current} */}
-        {/* open={accountPopover.open} */}
-        {/* onClose={accountPopover.handleClose} */}
-      {/* /> */}
     </>
   );
 };
-
