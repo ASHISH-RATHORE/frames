@@ -17,6 +17,26 @@ function Page() {
         <title>
           Register | Frames
         </title>
+        <meta
+          name="description"
+          key="description"
+          content="Register yourself and start contributing to this amazing community"
+        />
+        <meta
+          property="og:title"
+          content="Amazing content shared by creators | Frames"
+          key="og:title"
+        />
+        <meta
+          property="og:url"
+          key="og:url"
+          content="https://frames-dev.vercel.app/auth/register"
+        />
+        <link
+          rel="canonical"
+          key="canonical"
+          href="https://frames-dev.vercel.app/auth/register"
+        />
       </Head>
     <Box
     sx={{
