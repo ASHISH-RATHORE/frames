@@ -24,6 +24,7 @@ import AppLogo from "../assets/auth/login.svg";
 import Image from "next/image";
 import { Logo } from "@/components/custom-logo/logo";
 import Link from "next/link";
+import AddIcon from "@mui/icons-material/Add";
 
 import { useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -36,63 +37,66 @@ export const TopNav = (props) => {
   const { onNavOpen } = props;
   // const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   // const accountPopover = usePopover();
-  const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
+  const Search = styled("div")(({ theme }) => ({
+    position: "relative",
     borderRadius: theme.shape.borderRadius,
     // border:"1px solid ",
     // borderColor:"theme.palette.primary.main",
-    background:"#f7f7f7",
+    background: "#f7f7f7",
     // '&:hover': {
     //   backgroundColor: alpha(theme.palette.common.white, 0.25),
     // },
     marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
-      width: 'auto',
+      width: "auto",
     },
   }));
 
-  const SearchIconWrapper = styled('div')(({ theme }) => ({
+  const SearchIconWrapper = styled("div")(({ theme }) => ({
     padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   }));
 
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'theme.palette.primary.main',
-    '& .MuiInputBase-input': {
+    color: "theme.palette.primary.main",
+    "& .MuiInputBase-input": {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create('width'),
-      width: '100%',
-      [theme.breakpoints.up('md')]: {
-        width: '20ch',
+      transition: theme.transitions.create("width"),
+      width: "100%",
+      [theme.breakpoints.up("md")]: {
+        width: "20ch",
       },
     },
   }));
-  
 
   const theme = useTheme();
 
   return (
     <>
-      <Box
+      {/* <Box
         component="header"
         // sx={{ flexGrow: 1}}
-      >
-        <AppBar position="sticky" sx={{
+      > */}
+      <Box
+        component="header"
+        sx={{
           background: (theme) => theme.palette.background.default,
-          position: "sticky",
           top: 0,
+          backdropFilter: "blur(6px)",
+          position: "sticky",
           zIndex: (theme) => theme.zIndex.appBar,
-        }}>
-
+          height: TOP_NAV_HEIGHT,
+        }}
+      >
         <Stack
           alignItems="center"
           direction="row"
@@ -102,61 +106,48 @@ export const TopNav = (props) => {
             minHeight: TOP_NAV_HEIGHT,
             px: 2,
           }}
-          >
+        >
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <Box
               component={Link}
               href="/"
               sx={{
-                height: 40,
-                width: 40,
-               display: { xs: 'none', md: 'flex' }
+                height: 32,
+                width: 32,
+                display: { xs: "none", md: "flex" },
               }}
-              >
+            >
               <Logo />
             </Box>
-            <Image src={AppName} alt="Frames" height={30} />
-            <Box>
-          {/* <Search>
-          <SearchIconWrapper>
-          <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-          placeholder="Search…"
-          inputProps={{ 'aria-label': 'search' }}
-          />
-          </Search> */}
-        </Box>
-            
+            <Image src={AppName} alt="Frames" height={30} priority />
           </Stack>
-         
 
           <Stack
             alignItems="center"
-            justifyContent="space-evenly"
+            justifyContent="space-around"
             direction="row"
             spacing={5}
-            >
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button disabled variant="contained">
+          >
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <Button endIcon={<AddIcon />} disabled variant="contained">
                 Upload
               </Button>
             </Box>
 
-            <Stack direction="row" >
+            <Box>
               {false ? (
                 <Avatar
-                sx={{
-                  cursor: "pointer",
-                  height: 40,
-                  width: 40,
-                  background: theme.palette.background.app,
-                }}
+                  sx={{
+                    cursor: "pointer",
+                    height: 40,
+                    width: 40,
+                    background: theme.palette.background.app,
+                  }}
                 >
                   AR
                 </Avatar>
-              ):(
-                <Box >
+              ) : (
+                <Stack direction="row" spacing={2}>
                   <Button component={Link} href="/auth/login">
                     Log in
                   </Button>
@@ -164,16 +155,16 @@ export const TopNav = (props) => {
                     component={Link}
                     href="/auth/register"
                     variant="contained"
-                    >
+                  >
                     Join
                   </Button>
-                </Box>
-                )}
-            </Stack>
+                </Stack>
+              )}
+            </Box>
           </Stack>
         </Stack>
-              </AppBar>
       </Box>
+      {/* </Box> */}
     </>
   );
 };
