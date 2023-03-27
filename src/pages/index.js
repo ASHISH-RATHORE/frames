@@ -19,6 +19,8 @@ import { AppLogo } from "@/components/custom-logo/app-logo";
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import LinkBar from "./../Navigation/link-bar";
+import ImageCard from "@/components/UI-components/ImageCard";
 
 const Page = () => {
   const Wrapper = styled("div")(({ theme }) => ({
@@ -48,91 +50,29 @@ const Page = () => {
         <link rel="icon" href="/login.svg" />
       </Head>
 
-      <Stack
+      {/* <LinkBar /> */}
+      <Box
         sx={{
           display: "flex",
           justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            backgroundColor: "grey",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-            textAlign: "center",
-            height: "25em",
-            padding: "0 1em",
-            backgroundImage: `url(https://images.pexels.com/photos/2043739/pexels-photo-2043739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`,
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: {
-                lg: 35,
-                md: 30,
-                sm: 25,
-                xs: 18,
-              },
-            }}
-            color={"background.default"}
-          >
-            The best free stock photos, royalty free images shared by creators.
-          </Typography>
-        </Box>
-        <Stack
-          // maxWidth={"lg"}
-          spacing={10}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "1em auto",
-          }}
-          direction="row"
-        >
-          <Button
-            color="secondary"
-            sx={{ border: "1px solid" }}
-            component={Link}
-            variant={query?.type == null ? "contained" : "text"}
-            href="/"
-          >
-            Wall
-          </Button>
-          <Button
-            variant={query?.type == "following" ? "contained" : "text"}
-            color="secondary"
-            component={Link}
-            href="?type=following"
-          >
-            Following
-          </Button>
-        </Stack>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Grid container maxWidth={"lg"} rowSpacing={1} columnSpacing={1}>
-            {itemData.map((item) => (
-              <Grid lg={3} md={4} sm={6} xs={12} item>
-                <img
-                  src={`${item.img}`}
-                  srcSet={`${item.img}`}
-                  alt={item.title}
-                  loading="lazy"
-                  width={"100%"}
-                  height={"350px"}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Stack>
+        <Grid container maxWidth={"lg"} rowSpacing={1} columnSpacing={1}>
+          {itemData.map((item, key) => (
+            <Grid key={key} lg={3} md={4} sm={6} xs={12} item>
+              <img
+                src={`${item.img}`}
+                srcSet={`${item.img}`}
+                alt={item.title}
+                loading="lazy"
+                width={"100%"}
+                height={"350px"}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </>
   );
 };
