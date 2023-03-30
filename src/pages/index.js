@@ -6,6 +6,7 @@ import {
   Grid,
   ImageList,
   ImageListItem,
+  ImageListItemBar,
   Paper,
   Stack,
   Typography,
@@ -58,17 +59,28 @@ const Page = () => {
           alignItems: "center",
         }}
       >
-        <Grid container maxWidth={"lg"} rowSpacing={1} columnSpacing={1}>
+        <Grid
+          container
+          maxWidth={"lg"}
+          pl={1}
+          pr={1}
+          rowSpacing={1}
+          columnSpacing={1}
+        >
           {itemData.map((item, key) => (
             <Grid key={key} lg={3} md={4} sm={6} xs={12} item>
-              <img
-                src={`${item.img}`}
-                srcSet={`${item.img}`}
-                alt={item.title}
-                loading="lazy"
-                width={"100%"}
-                height={"350px"}
-              />
+              <ImageList sx={{ height: "100%" }} cols={1}>
+                <ImageCard>
+                  <img
+                    src={`${item.img}`}
+                    srcSet={`${item.img}`}
+                    alt={item.title}
+                    loading="lazy"
+                    width={"100%"}
+                    // height={"350px"}
+                  />
+                </ImageCard>
+              </ImageList>
             </Grid>
           ))}
         </Grid>

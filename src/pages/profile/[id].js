@@ -13,8 +13,9 @@ import React from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import RoomIcon from "@mui/icons-material/Room";
+import { withAuthGuard } from "@/hocs/with-auth-guard";
 
-function Page() {
+const Page = withAuthGuard(() => {
   return (
     <Box
       sx={{
@@ -33,15 +34,37 @@ function Page() {
         container
         mt={5}
       >
-        <Grid lg={4} md={5} sm={6} xs={12} item>
+        <Grid
+          sx={{
+            background:
+              "linear-gradient(90deg, rgba(241,242,198,1) 4%, rgba(184,224,228,1) 58%, rgba(216,197,233,1) 89%)",
+          }}
+          sm={12}
+          p={2}
+          item
+        >
           <Stack
-            spacing={2}
+            spacing={3}
             display={"flex"}
             justifyContent={"center"}
             alignItems="center"
           >
-            <Avatar sx={{ width: 120, height: 120 }}>AR</Avatar>
+            <Avatar
+              sx={{
+                width: 120,
+                height: 120,
+                background: "white",
+                color: "black",
+              }}
+            >
+              AR
+            </Avatar>
             <Typography variant="h5">Ashish Rathore</Typography>
+            <Stack direction={"row"} spacing={2}>
+              <Button variant="outlined">Follow</Button>
+              <Button variant="outlined">Message</Button>
+              <Button variant="outlined">Hire</Button>
+            </Stack>
             <Stack
               alignItems={"center"}
               justifyContent="center"
@@ -57,7 +80,9 @@ function Page() {
               Ambassador Get free Adobe Creative Cloud with the link in my bio
             </Typography>
             <Box>
-              <Typography variant="body1">Connect with Ashish</Typography>
+              <Typography variant="body1" color={"secondary"}>
+                Connect with Ashish
+              </Typography>
               <Stack
                 alignItems=" center"
                 justifyContent="center"
@@ -65,19 +90,18 @@ function Page() {
                 spacing={2}
                 mt={2}
               >
-                <SvgIcon component={InstagramIcon} />
-                <SvgIcon component={FacebookIcon} />
+                <SvgIcon>
+                  <InstagramIcon htmlColor="blue" />
+                </SvgIcon>
+                <SvgIcon>
+                  <FacebookIcon htmlColor="blue" />
+                </SvgIcon>
               </Stack>
             </Box>
-            <Stack direction={"row"} spacing={2}>
-              <Button variant="outlined">Follow</Button>
-              <Button variant="outlined">Message</Button>
-              <Button variant="outlined">Hire</Button>
-            </Stack>
           </Stack>
         </Grid>
 
-        <Grid lg={8} md={7} sm={6} xs={12} item>
+        <Grid lg={12} item>
           <Stack spacing={3} direction="row">
             <Button>Photos</Button>
             <Button>Likes</Button>
@@ -101,7 +125,7 @@ function Page() {
       </Grid>
     </Box>
   );
-}
+});
 
 export default Page;
 
